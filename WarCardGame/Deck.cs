@@ -13,7 +13,7 @@ namespace WarCardGame
         public static Random random = new Random();
 
         //private List<Card> cards;
-        Stack<Card> cards = new Stack<Card>();
+        public Stack<Card> cards = new Stack<Card>();
 
         public Deck()
         {

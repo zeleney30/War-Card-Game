@@ -5,4 +5,4 @@
 Game war = new Game();
 
 war.Play();
-war.deck.ToString();
+//war.deck.ToString();
