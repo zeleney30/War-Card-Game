@@ -44,7 +44,9 @@ namespace WarCardGame
 
                 foreach (Card card in cardsInPlay)
                 {
+                    //Add the cards to the players hand, then shuffle them
                     p1.cards.Push(card);
+                    p1.Shuffle();
                     return;
                 }
             }
@@ -54,7 +56,9 @@ namespace WarCardGame
 
                 foreach (Card card in cardsInPlay)
                 {
+                    //Add the cards to the players hand, then shuffle them
                     p2.cards.Push(card);
+                    p2.Shuffle();
                     return;
                 }
             }
@@ -66,6 +70,7 @@ namespace WarCardGame
             }
         }
 
+        //If the cards in the fight are equal, call this function
         public void Fight(Player p1, Player p2, Stack<Card> cards)
         {
             Stack<Card> p1Cards = p1.cards;
@@ -89,7 +94,9 @@ namespace WarCardGame
 
                 foreach (Card card in cardsInPlay)
                 {
+                    //Add the cards to the players hand, then shuffle them
                     p1.cards.Push(card);
+                    p1.Shuffle();
                     return;
                 }
             }
@@ -99,23 +106,17 @@ namespace WarCardGame
 
                 foreach (Card card in cardsInPlay)
                 {
+                    //Add the cards to the players hand, then shuffle them
                     p2.cards.Push(card);
+                    p2.Shuffle();
                     return;
                 }
             }
             else //If p1's card is equal to p2's card
             {
-                Console.WriteLine("Next Cards...");
-                Fight(p1, p2, cardsInPlay);
-            }
-
-            Console.WriteLine("Cards in play: ");
-
-            foreach (Card card in cardsInPlay)
-            {
                 Console.WriteLine("Cards are equal...");
                 Console.WriteLine("Next Cards...");
-                Console.WriteLine(card.ToString());
+                Fight(p1, p2, cardsInPlay);
             }
         }
     }
