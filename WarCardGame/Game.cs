@@ -24,27 +24,98 @@ namespace WarCardGame
             Stack<Card> p1Cards = p1.cards;
             Stack<Card> p2Cards = p2.cards;
 
-            Deck cardsInPlay = new Deck();
+            //These are the cards being played
+            Stack<Card> cardsInPlay = new Stack<Card>();
+            Card c1 = p1Cards.Pop();
+            Card c2 = p2Cards.Pop();
 
-            Deck deck1Copy = new Deck();
-            Deck deck2Copy = new Deck();
+            //Add the 2 top cards from each players deck to the pile
+            //Use peek not pop so the cards arent removed; we still need to compare the cards
+            cardsInPlay.Push(c1);
+            cardsInPlay.Push(c2);
 
-            cardsInPlay.cards.Push(p1Cards.Pop());
-            cardsInPlay.cards.Push(p2Cards.Pop());
+            Console.WriteLine("Fight: ");
+            Console.WriteLine(c1.ToString() + " vs " + c2.ToString());
 
-            if (p1.cards.Pop().number > p2.cards.Pop().number)
+            //Compare cards
+            if (c1.number > c2.number)  //If p1 has a higher card than p2
             {
-                foreach (Card card in cardsInPlay.cards)
+                Console.WriteLine(c1.ToString() + " Wins!");
+
+                foreach (Card card in cardsInPlay)
                 {
                     p1.cards.Push(card);
+                    return;
                 }
             }
-            else
+            else if (c2.number > c1.number) //If p2 has a higher card than p1
             {
-                foreach (Card card in cardsInPlay.cards)
+                Console.WriteLine(c2.ToString() + " Wins!");
+
+                foreach (Card card in cardsInPlay)
                 {
                     p2.cards.Push(card);
+                    return;
                 }
+            }
+            else //If p1's card is equal to p2's card
+            {
+                Console.WriteLine("Cards are equal...");
+                Console.WriteLine("Next Cards...");
+                Fight(p1, p2, cardsInPlay);
+            }
+        }
+
+        public void Fight(Player p1, Player p2, Stack<Card> cards)
+        {
+            Stack<Card> p1Cards = p1.cards;
+            Stack<Card> p2Cards = p2.cards;
+
+            //These are the cards being played
+            Stack<Card> cardsInPlay = cards;
+            Card c1 = p1Cards.Pop();
+            Card c2 = p2Cards.Pop();
+
+            //Add the 2 top cards from each players deck to the pile
+            cardsInPlay.Push(c1);
+            cardsInPlay.Push(c2);
+
+            Console.WriteLine(c1.ToString() + " vs " + c2.ToString());
+
+            //Compare cards
+            if (c1.number > c2.number)  //If p1 has a higher card than p2
+            {
+                Console.WriteLine(c1.ToString() + " Wins!");
+
+                foreach (Card card in cardsInPlay)
+                {
+                    p1.cards.Push(card);
+                    return;
+                }
+            }
+            else if (c2.number > c1.number) //If p2 has a higher card than p1
+            {
+                Console.WriteLine(c2.ToString() + " Wins!");
+
+                foreach (Card card in cardsInPlay)
+                {
+                    p2.cards.Push(card);
+                    return;
+                }
+            }
+            else //If p1's card is equal to p2's card
+            {
+                Console.WriteLine("Next Cards...");
+                Fight(p1, p2, cardsInPlay);
+            }
+
+            Console.WriteLine("Cards in play: ");
+
+            foreach (Card card in cardsInPlay)
+            {
+                Console.WriteLine("Cards are equal...");
+                Console.WriteLine("Next Cards...");
+                Console.WriteLine(card.ToString());
             }
         }
     }
