@@ -12,11 +12,28 @@ namespace WarCardGame
         public Player player2 = new Player();
         public Deck deck = new Deck();
 
+        private int num_fight = 0;
+
         public void Play()
         {
             deck.Shuffle();
             deck.Deal(player1, player2);
-            Fight(player1, player2);
+
+            while (player1.cards.Count != 0 && player2.cards.Count != 0)
+            {
+                num_fight++;
+                Fight(player1, player2);
+                Console.WriteLine("Fight number: " + num_fight);
+            }
+
+            if (player1.cards.Count == 0)
+            {
+                Console.WriteLine("Player 2 Wins!");
+            }
+            else
+            {
+                Console.WriteLine("Player 1 Wins!");
+            }
         }
 
         public void Fight(Player p1, Player p2)
@@ -64,9 +81,22 @@ namespace WarCardGame
             }
             else //If p1's card is equal to p2's card
             {
-                Console.WriteLine("Cards are equal...");
-                Console.WriteLine("Next Cards...");
-                Fight(p1, p2, cardsInPlay);
+                //if one players hand is empty
+                //return the cards to each player
+                //shuffle their hands
+                if (p1Cards.Count == 0 || p2Cards.Count == 0)
+                {
+                    p1Cards.Push(c1);
+                    p2Cards.Push(c2);
+                    p1.Shuffle();
+                    p2.Shuffle();
+                }
+                else
+                {
+                    Console.WriteLine("Cards are equal...");
+                    Console.WriteLine("Next Cards...");
+                    Fight(p1, p2, cardsInPlay);
+                }
             }
         }
 
