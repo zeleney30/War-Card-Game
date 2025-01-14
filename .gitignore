@@ -36,6 +36,7 @@ temp/
 .metadata.v2
 .projects.v2
 dtbcache.v2
+*.suo
 
 # Ignore build output
 bin/
