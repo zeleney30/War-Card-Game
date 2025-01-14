@@ -53,7 +53,6 @@ namespace WarCardGame
             cardsInPlay.Push(c1);
             cardsInPlay.Push(c2);
 
-            Console.WriteLine("Fight: ");
             Console.WriteLine(c1.ToString() + " vs " + c2.ToString());
 
             //Compare cards
@@ -64,10 +63,10 @@ namespace WarCardGame
                 foreach (Card card in cardsInPlay)
                 {
                     //Add the cards to the players hand, then shuffle them
-                    p1.cards.Push(card);
-                    p1.Shuffle();
-                    return;
+                    p1.drawCard(card);
                 }
+
+                p1.Shuffle();
             }
             else if (c2.number > c1.number) //If p2 has a higher card than p1
             {
@@ -76,10 +75,10 @@ namespace WarCardGame
                 foreach (Card card in cardsInPlay)
                 {
                     //Add the cards to the players hand, then shuffle them
-                    p2.cards.Push(card);
-                    p2.Shuffle();
-                    return;
+                    p2.drawCard(card);
                 }
+
+                p2.Shuffle();
             }
             else //If p1's card is equal to p2's card
             {
@@ -88,16 +87,16 @@ namespace WarCardGame
                 //shuffle their hands
                 if (p1Cards.Count == 0 || p2Cards.Count == 0)
                 {
-                    p1Cards.Push(c1);
-                    p2Cards.Push(c2);
+                    p1.drawCard(c1);
+                    p2.drawCard(c2);
                     p1.Shuffle();
                     p2.Shuffle();
                 }
                 else
                 {
                     Console.WriteLine("Cards are equal...");
-                    Console.WriteLine("Next Cards...");
-                    Fight(p1, p2, cardsInPlay);
+                    Console.WriteLine("Going to war...");
+                    War(p1, p2, cardsInPlay);
                 }
             }
         }
@@ -105,7 +104,7 @@ namespace WarCardGame
 
 
         //If the cards in the fight are equal, call this function
-        public void Fight(Player p1, Player p2, Stack<Card> cards)
+        public void War(Player p1, Player p2, Stack<Card> cards)
         {
             Stack<Card> p1Cards = p1.cards;
             Stack<Card> p2Cards = p2.cards;
@@ -155,10 +154,10 @@ namespace WarCardGame
                 foreach (Card card in cardsInPlay)
                 {
                     //Add the cards to the players hand, then shuffle them
-                    p1.cards.Push(card);
-                    p1.Shuffle();
-                    return;
+                    p1.drawCard(card);
                 }
+
+                p1.Shuffle();
             }
             else if (c2.number > c1.number) //If p2 has a higher card than p1
             {
@@ -167,19 +166,19 @@ namespace WarCardGame
                 foreach (Card card in cardsInPlay)
                 {
                     //Add the cards to the players hand, then shuffle them
-                    p2.cards.Push(card);
-                    p2.Shuffle();
-                    return;
+                    p2.drawCard(card);
                 }
+
+                p2.Shuffle();
             }
             else //If p1's card is equal to p2's card, go to war again
             {
                 //If both players have enough cards for another war
-                if (p1Cards.Count >= 0 || p2Cards.Count >= 0)
+                if (p1Cards.Count >= 0 && p2Cards.Count >= 0)
                 {
                     Console.WriteLine("Cards are equal...");
                     Console.WriteLine("Going to war again...");
-                    Fight(p1, p2, cardsInPlay);
+                    War(p1, p2, cardsInPlay);
                 }
                 else
                 {
@@ -188,11 +187,11 @@ namespace WarCardGame
                         //Player 2's card was the last card played, so it will be on top
                         if (i % 2 == 0) //Player 2
                         {
-                            p2.cards.Push(cardsInPlay.Pop());
+                            p2.drawCard(cardsInPlay.Pop());
                         }
                         else //Player 1
                         {
-                            p1.cards.Push(cardsInPlay.Pop());
+                            p1.drawCard(cardsInPlay.Pop());
                         }
                     }
 

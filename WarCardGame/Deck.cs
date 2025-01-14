@@ -43,6 +43,8 @@ namespace WarCardGame
 
             cards.Clear();
 
+            Console.WriteLine("Shuffling...");
+
             foreach (var card in array)
             {
                 cards.Push(card);
@@ -52,6 +54,8 @@ namespace WarCardGame
         public void Deal(Player p1, Player p2)
         {
             var cards_copy = cards.ToArray();
+
+            Console.WriteLine("Dealing...");
 
             for (int i = 0; i < cards_copy.Length; i++)
             {
