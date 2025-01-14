@@ -16,11 +16,20 @@ namespace WarCardGame
 
         public void Play()
         {
+            Console.WriteLine("Would you like me to stop after every fight?");
+            Console.Write("Enter 'y' or 'n': ");
+            string stopAfterFight = Console.ReadLine();
+
             deck.Shuffle();
             deck.Deal(player1, player2);
 
             while (player1.cards.Count != 0 && player2.cards.Count != 0)
             {
+                if (stopAfterFight.ToLower() == "y")
+                {
+                    Console.Write("Press 'Enter' to continue...");
+                    var v = Console.ReadLine();
+                }
                 num_fight++;
                 Fight(player1, player2);
                 Console.WriteLine("Fight number: " + num_fight);
