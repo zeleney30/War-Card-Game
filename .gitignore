@@ -33,6 +33,9 @@ temp/
 *.dll
 *.cache
 *.csproj.user
+.metadata.v2
+.projects.v2
+dtbcache.v2
 
 # Ignore build output
 bin/
