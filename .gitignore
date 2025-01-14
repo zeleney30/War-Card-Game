@@ -16,3 +16,29 @@ temp/
 
 # Built Visual Studio Code Extensions
 *.vsix
+*.vsidx
+
+*.lock
+
+# Ignore Visual Studio temporary files, build results, and
+# user-specific files
+.vs/
+*.user
+*.suo
+*.log
+*.lock
+*.obj
+*.exe
+*.pdb
+*.dll
+*.cache
+*.csproj.user
+
+# Ignore build output
+bin/
+obj/
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp
