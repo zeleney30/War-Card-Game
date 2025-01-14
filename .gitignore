@@ -37,6 +37,8 @@ temp/
 .projects.v2
 dtbcache.v2
 *.suo
+*.dll
+*.sdb
 
 # Ignore build output
 bin/
